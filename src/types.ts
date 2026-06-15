@@ -10,6 +10,11 @@ export interface ServiceAccount {
   notes?: string;
 }
 
+export interface PaymentUrl {
+  name: string;
+  url: string;
+}
+
 export interface Property {
   id: string;
   name: string;
@@ -17,11 +22,23 @@ export interface Property {
   city: string;
   country: Country;
   role: PropertyRole;
+  escriturada?: boolean;
+  propertyType?: string;
+  surface?: string;
+  floor?: string;
+  cuil?: string;
+  contactEmail?: string;
   tenantName?: string;
+  tenantPhone?: string;
+  tenantEmail?: string;
+  managingAgency?: string;
+  managingEmail?: string;
   rentAmount?: number;
   rentCurrency?: Currency;
   rentDueDay?: number;
+  generalNotes?: string;
   accounts: ServiceAccount[];
+  paymentUrls?: PaymentUrl[];
 }
 
 export interface Transaction {
