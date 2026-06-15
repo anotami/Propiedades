@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Home, Eye, EyeOff, Lock } from 'lucide-react';
+import { recordVisit } from '../lib/visitLog';
 
 interface LoginPageProps {
   passwordSet: boolean;
@@ -18,9 +19,11 @@ export function LoginPage({ passwordSet, onLogin, onSetupPassword, error, loadin
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (passwordSet) {
-      await onLogin(password);
+      const ok = await onLogin(password);
+      if (ok) void recordVisit('login');
     } else {
-      await onSetupPassword(password, confirm);
+      const ok = await onSetupPassword(password, confirm);
+      if (ok) void recordVisit('login');
     }
   };
 
